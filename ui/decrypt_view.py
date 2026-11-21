@@ -160,6 +160,7 @@ class DecryptView(ctk.CTkScrollableFrame):
             frame,
             text="Desencriptar mensaje",
             height=45,
+            font=("Poppins", 15, "bold"),
             corner_radius=12,
             fg_color="#1C1C1C",
             hover_color="#383838",
