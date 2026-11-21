@@ -199,25 +199,20 @@ El siguiente ejemplo corresponde al caso de referencia del enunciado.
 | q | 373 |
 | e | 17 |
 
+
 ### Cálculos
 
-\[
-n=367\times373=136891
-\]
+$$
+n = 367 \times 373 = 136891
+$$
 
-\[
-\varphi(n)=366\times372=136152
-\]
+$$
+\varphi(n) = 366 \times 372 = 136152
+$$
 
-\[
-MCD(17,136152)=1
-\]
-
-El mensaje original tiene longitud:
-
-\[
-L=3
-\]
+$$
+MCD(17, 136152) = 1
+$$
 
 Como la longitud es impar, se agrega un espacio:
 
