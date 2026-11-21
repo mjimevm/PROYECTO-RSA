@@ -1,4 +1,4 @@
-# RSA Cryptography
+# PROYECTO-RSA
 
 **Proyecto de Criptografía RSA**  
 MM2015 — Matemática Discreta 1
