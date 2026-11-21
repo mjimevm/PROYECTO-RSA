@@ -118,27 +118,27 @@ RSA utiliza dos números primos distintos, `p` y `q`.
 
 Se calcula:
 
-\[
-n=pq
-\]
+$$
+n = pq
+$$
 
-\[
-\varphi(n)=(p-1)(q-1)
-\]
+$$
+\varphi(n) = (p-1)(q-1)
+$$
 
 El exponente público `e` debe cumplir:
 
-\[
-e>1,\qquad MCD(e,\varphi(n))=1
-\]
+$$
+e > 1,\qquad MCD(e,\varphi(n)) = 1
+$$
 
 La llave pública es `(e, n)`.
 
 El exponente privado `d` se obtiene mediante el inverso modular:
 
-\[
-ed\equiv1\pmod{\varphi(n)}
-\]
+$$
+ed \equiv 1 \pmod{\varphi(n)}
+$$
 
 La llave privada queda determinada por `(d, n)`.
 
@@ -146,19 +146,21 @@ La llave privada queda determinada por `(d, n)`.
 
 Para cada bloque numérico `m`:
 
-\[
-c=m^e\bmod n
-\]
+$$
+c = m^e \bmod n
+$$
 
 ### Desencriptación
 
 Para cada bloque cifrado `c`:
 
-\[
-m=c^d\bmod n
-\]
+$$
+m = c^d \bmod n
+$$
 
-Los algoritmos matemáticos deben implementarse directamente en Python, sin utilizar funciones que sustituyan el cálculo del MCD, el inverso modular o la exponenciación modular.
+Los algoritmos matemáticos se implementan directamente en Python,
+sin utilizar funciones que sustituyan el cálculo del MCD,
+el inverso modular o la exponenciación modular.
 
 ## 8. Representación de los mensajes
 
