@@ -45,13 +45,11 @@ El proyecto está preparado principalmente para ejecutarse en Windows.
 
 ## 4. Instalación
 
-### Clonar el repositorio
+### Descargar carpeta .zip
 
-```bash
-git clone "URL_DEL_REPOSITORIO"
-```
+Luego de descargarla, se descomprime en alguna carpeta y se abre el proyecto en el IDE de preferencia.
 
-Acceder a la carpeta principal de la aplicación:
+Posteriormente, verificar si la terminal se encuentra en la carpeta principal de la aplicación:
 
 ```bash
 cd Proyecto_RSA
@@ -65,7 +63,7 @@ python -m venv .venv
 
 ### Activar el entorno virtual
 
-En Windows PowerShell:
+En la terminal:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
