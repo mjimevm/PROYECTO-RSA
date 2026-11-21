@@ -1,6 +1,7 @@
 
 import customtkinter as ctk
-
+from core.rsa import encriptar, generar_claves
+from ui.details_view import detalles_encriptacion
 
 class EncryptView(ctk.CTkScrollableFrame):
 
@@ -177,7 +178,7 @@ class EncryptView(ctk.CTkScrollableFrame):
             fg_color="#1C1C1C",
             hover_color="#383838",
             text_color="#FFFFFF",
-            command=self.encrypt_placeholder
+            command=self.encriptar_mensaje
         )
         self.encrypt_button.pack(
             fill="x",
@@ -236,7 +237,95 @@ class EncryptView(ctk.CTkScrollableFrame):
             pady=(0, 24)
         )
 
-    def encrypt_placeholder(self):
-        self.details_label.configure(
-            text="Pendiente: conectar el algoritmo RSA."
+
+        # Cuadro para mostrar el procedimiento RSA
+        self.proceso_text = ctk.CTkTextbox(
+            self,
+            height=220,
+            corner_radius=12,
+            fg_color="#F5F5F5",
+            text_color="#1C1C1C",
+            font=("Consolas", 14)
         )
+
+        self.proceso_text.grid(
+            row=5,
+            column=0,
+            sticky="ew",
+            pady=(0, 20)
+        )
+
+        self.proceso_text.configure(state="disabled")
+
+
+
+
+
+    # Encriptar el mensaje
+    def encriptar_mensaje(self):
+        try:
+            # Obtener los datos ingresados
+            p = int(self.p_entry.get() or "367")
+            q = int(self.q_entry.get() or "373")
+            e = int(self.e_entry.get() or "17")
+
+            mensaje = self.message_text.get("1.0", "end-1c")
+            
+            # Quitar solamente el salto de linea final del cuadro de texto
+            if mensaje.endswith("\n"):
+                mensaje = mensaje[:-1]
+
+            # Encriptar el mensaje
+            cifrado, L = encriptar(mensaje, p, q, e)
+
+            # Mostrar solamente el mensaje cifrado
+            self.result_text.configure(state="normal")
+            self.result_text.delete("1.0", "end")
+            self.result_text.insert("1.0", cifrado)
+            self.result_text.configure(state="disabled")
+
+            # Calcular los valores RSA
+            n, d = generar_claves(p, q, e)
+            total_coprimos = (p - 1) * (q - 1)
+
+            # Verificar si se agrego relleno
+            if L % 2 == 0:
+                relleno = "No"
+            else:
+                relleno = "Si"
+
+            # Mostrar la informacion del proceso
+            self.details_label.configure(
+                text=f"n: {n}     φ: {total_coprimos}     "f"L: {L}     Relleno: {relleno}     "f"Llave publica: ({e}, {n})"
+            )
+
+
+            # Obtener los detalles de la encriptacion
+            detalles = detalles_encriptacion(mensaje, p, q, e)
+
+            # Mostrar los detalles en la interfaz
+            self.proceso_text.configure(state="normal")
+            self.proceso_text.delete("1.0", "end")
+            self.proceso_text.insert("1.0", detalles)
+            self.proceso_text.configure(state="disabled")
+
+
+
+        except ValueError as error:
+
+            # Limpiar el resultado anterior
+            self.result_text.configure(state="normal")
+            self.result_text.delete("1.0", "end")
+            self.result_text.configure(state="disabled")
+
+            # Limpiar el procedimiento anterior
+            self.proceso_text.configure(state="normal")
+            self.proceso_text.delete("1.0", "end")
+            self.proceso_text.configure(state="disabled")
+
+            # Mostrar el error
+            self.details_label.configure(
+                text=f"Error: {error}"
+            )
+
+
