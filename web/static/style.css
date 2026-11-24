@@ -490,6 +490,84 @@ body {
 }
 
 
+/* NOTIFICACIONES DE ERROR */
+
+.rsa-notification-error {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    background: #FDEAEA;
+    border: 1px solid #F4C3C3;
+    border-radius: 14px;
+    color: #9B2525;
+    font-family: "Poppins", sans-serif;
+}
+
+.rsa-notification-error .notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #9B2525;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.rsa-notification-error .notification-content strong {
+    display: block;
+    font-size: 14px;
+}
+
+.rsa-notification-error .notification-content p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+
+
+/* NOTIFICACIÓN DE ÉXITO */
+
+.rsa-notification-success {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    background: #E5F6EB;
+    border: 1px solid #B9E5CA;
+    border-radius: 14px;
+    color: #17643B;
+    font-family: "Poppins", sans-serif;
+}
+
+.rsa-notification-success .success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #17643B;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.rsa-notification-success .notification-content strong {
+    display: block;
+    font-size: 14px;
+}
+
+.rsa-notification-success .notification-content p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+
+
 /* DESENCRIPTACION RSA */
 
 .encrypt-page .decrypt-inputs {

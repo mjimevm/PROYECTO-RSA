@@ -5,6 +5,16 @@
 
 <div class="encrypt-page">
 
+    {% if resultado is not none %}
+        <div class="rsa-server-response"
+            data-success="true"
+            hidden></div>
+        {% elif error %}
+        <div class="rsa-server-response"
+            data-success="false"
+            hidden></div>
+        {% endif %}
+
     <!-- ENCABEZADO -->
     <header class="encrypt-header">
         <h1>Desencriptar mensaje</h1>
@@ -64,11 +74,34 @@
     </form>
 
     <!-- ERRORES -->
+    
+    <!-- NOTIFICACIÓN DE ERROR -->
     {% if error %}
-    <div class="encrypt-error">
-        Error: {{ error }}
+    <div class="rsa-notification-error" role="alert">
+        <div class="notification-icon">!</div>
+
+        <div class="notification-content">
+            <strong>Datos incorrectos</strong>
+            <p>{{ error }}</p>
+        </div>
     </div>
     {% endif %}
+
+
+    <!-- NOTIFICACIÓN DE ÉXITO -->
+    {% if resultado is defined and resultado is not none and not error %}
+    <div class="rsa-notification-success" role="status">
+        <div class="success-icon">✓</div>
+
+        <div class="notification-content">
+            <strong>Desencriptación completada</strong>
+            <p>El mensaje original se recuperó correctamente.</p>
+        </div>
+    </div>
+    {% endif %}
+
+
+
 
     <!-- MENSAJE RECUPERADO -->
     <section class="encrypt-card result-card">

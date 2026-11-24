@@ -66,6 +66,8 @@ def encrypt():
 
         except ValueError as error:
             datos["error"] = str(error)
+            datos["resultado"] = None
+            datos["detalles"] = None
 
     return render_template("encrypt.html", **datos)
 
@@ -133,6 +135,9 @@ def decrypt():
 
         except ValueError as error:
             datos["error"] = str(error)
+            datos["resultado"] = None
+            datos["detalles"] = None
+
 
     return render_template(
         "decrypt.html",
@@ -141,5 +146,7 @@ def decrypt():
 
 
 
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
