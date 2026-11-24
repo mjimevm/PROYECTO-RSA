@@ -1,0 +1,148 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="encrypt-page">
+
+    <!-- ENCABEZADO -->
+    <header class="encrypt-header">
+        <h1>Desencriptar mensaje</h1>
+        <p>Recupera el mensaje original utilizando RSA.</p>
+    </header>
+
+    <form method="POST" action="{{ url_for('decrypt') }}">
+
+        <!-- PARAMETROS RSA -->
+        <section class="encrypt-card parameters-card">
+            <h2>Parámetros RSA</h2>
+
+            <div class="rsa-inputs decrypt-inputs">
+
+                <div class="rsa-field">
+                    <label for="p">Número primo p</label>
+                    <input type="number" id="p" name="p"
+                           placeholder="367" value="{{ p }}">
+                </div>
+
+                <div class="rsa-field">
+                    <label for="q">Número primo q</label>
+                    <input type="number" id="q" name="q"
+                           placeholder="373" value="{{ q }}">
+                </div>
+
+                <div class="rsa-field">
+                    <label for="e">Exponente e</label>
+                    <input type="number" id="e" name="e"
+                           placeholder="17" value="{{ e }}">
+                </div>
+
+                <div class="rsa-field">
+                    <label for="L">Longitud L</label>
+                    <input type="number" id="L" name="L"
+                           placeholder="3" value="{{ L }}">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MENSAJE CIFRADO -->
+        <section class="encrypt-card message-card">
+            <h2>Mensaje cifrado C</h2>
+
+            <textarea
+                id="cifrado"
+                name="cifrado"
+                rows="4"
+                placeholder="026054 123875"
+            >{{ cifrado }}</textarea>
+
+            <button type="submit" class="encrypt-button">
+                Desencriptar mensaje
+            </button>
+        </section>
+    </form>
+
+    <!-- ERRORES -->
+    {% if error %}
+    <div class="encrypt-error">
+        Error: {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- MENSAJE RECUPERADO -->
+    <section class="encrypt-card result-card">
+        <h2>Mensaje recuperado</h2>
+
+        <div class="cipher-output-box">
+            {% if resultado is not none %}
+            <div class="cipher-output-row">
+                <div class="cipher-output-content">
+                    <span class="cipher-output-label">
+                        MENSAJE ORIGINAL
+                    </span>
+
+                    <div class="cipher-output-value">{{ resultado }}</div>
+                </div>
+
+                <button
+                    type="button"
+                    class="cipher-copy-button"
+                    data-cipher="{{ resultado }}"
+                    onclick="copiarCifrado(this)">
+                    Copiar
+                </button>
+            </div>
+            {% else %}
+            <span class="cipher-placeholder">
+                El mensaje recuperado aparecerá aquí.
+            </span>
+            {% endif %}
+        </div>
+
+        {% if resultado is not none %}
+        <div class="cipher-details-grid">
+
+            <div class="cipher-detail">
+                <span>Módulo (n)</span>
+                <strong>{{ n }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Totiente (φ)</span>
+                <strong>{{ phi }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Exponente privado (d)</span>
+                <strong>{{ d }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Longitud (L)</span>
+                <strong>{{ L }}</strong>
+            </div>
+
+            <div class="cipher-detail cipher-detail-wide">
+                <span>Llave privada</span>
+                <strong>({{ d }}, {{ n }})</strong>
+            </div>
+
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- PROCEDIMIENTO MATEMATICO -->
+    {% if detalles %}
+    <section class="encrypt-card cipher-procedure-card">
+        <h2>Procedimiento de desencriptación</h2>
+
+        <div class="cipher-procedure-content">
+            <pre>{{ detalles }}</pre>
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+
+{% endblock %}

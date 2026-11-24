@@ -1,0 +1,564 @@
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-Bold.ttf");
+    font-weight: 700;
+}
+
+:root {
+    --black: #1C1C1C;
+    --white: #FFFFFF;
+    --background: #1C1C1C;
+    --blue: #E3F1FF;
+    --purple: #E8E0F3;
+    --green: #DDF2E3;
+    --cream: #F8F0D8;
+    --gray: #F5F5F5;
+    --text-secondary: #777777;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background: var(--background);
+    color: #1C1C1C;
+    overflow: hidden;
+}
+
+.app-layout {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100%;
+    flex: 0 0 220px;
+
+    background: #1C1C1C;
+    border-radius: 22px;
+    padding: 25px 14px;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    background: var(--black);
+    border-radius: 14px;
+    text-align: center;
+    color:var(--white);
+    font-size: 20px;
+    font-weight: 700;
+    padding: 12px;
+    margin: 0 6px 50px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #353535;
+}
+
+.nav-icon {
+    font-size: 19px;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+
+    background: #FFFFFF;
+    border-radius: 25px;
+    padding: 35px 45px;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+/* SCROLLBAR */
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: #C5C5C5;
+    border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+}
+
+
+
+/* ALINEACION DE ENCABEZADOS */
+
+.page-header,
+.encrypt-header {
+    margin: 0 0 25px;
+    padding: 0;
+}
+
+.page-header h1,
+.encrypt-header h1 {
+    margin: 0 0 8px;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1C1C1C;
+}
+
+.page-header p,
+.encrypt-header p {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #777777;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    padding: 25px;
+    border-radius: 20px;
+    min-height: 155px;
+}
+
+.stat-card p {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #444444;
+}
+
+.stat-card h2 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.blue { background: var(--blue); }
+.purple { background: var(--purple); }
+.green { background: var(--green); }
+
+.operations {
+    margin-top: 30px;
+}
+
+.operations > h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.action-card {
+    background: var(--gray);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.action-card h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+}
+
+.action-card p {
+    margin: 0 0 22px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.action-button {
+    display: inline-block;
+    background: var(--black);
+    color: white;
+    text-decoration: none;
+    padding: 11px 30px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.action-button:hover {
+    background: #383838;
+}
+
+.encrypt-card {
+    background: #F5F5F5;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.rsa-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.message-card {
+    background: #E8E0F3;
+}
+
+.result-card {
+    background: #DDF2E3;
+}
+
+
+/* CORRECCIONES DE ENCRYPT VIEW */
+
+.encrypt-page .rsa-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+.encrypt-page .rsa-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.encrypt-page .rsa-field label {
+    display: block;
+    font-size: 13px;
+    color: #444444;
+}
+
+.encrypt-page .rsa-field input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    box-sizing: border-box;
+
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #1C1C1C;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+}
+
+.encrypt-page .message-card textarea {
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    padding: 14px;
+    box-sizing: border-box;
+
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #1C1C1C;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.encrypt-page .encrypt-button {
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-top: 16px;
+
+    border: none;
+    border-radius: 12px;
+    background: #1C1C1C;
+    color: #FFFFFF;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.encrypt-page .encrypt-button:hover {
+    background: #383838;
+}
+
+.encrypt-page .encrypt-result {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    padding: 15px;
+    box-sizing: border-box;
+
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #1C1C1C;
+
+    font-family: Consolas, monospace;
+    font-size: 15px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================
+   RESULTADO DEL CIFRADO - CORREGIDO
+===================================== */
+
+.encrypt-page .cipher-output-box {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    height: auto;
+    padding: 18px 20px;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: #FFFFFF;
+}
+
+.encrypt-page .cipher-output-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.encrypt-page .cipher-output-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.encrypt-page .cipher-output-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #777777;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.encrypt-page .cipher-output-value {
+    margin: 0;
+    color: #1C1C1C;
+    font-family: Consolas, monospace;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.encrypt-page .cipher-copy-button {
+    flex-shrink: 0;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 10px 18px;
+    background: #F5F5F5;
+    color: #1C1C1C;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.encrypt-page .cipher-copy-button:hover {
+    background: #E8E0F3;
+}
+
+.encrypt-page .cipher-placeholder {
+    font-size: 13px;
+    color: #999999;
+}
+
+/* TARJETAS DE INFORMACIÓN RSA */
+
+.encrypt-page .cipher-details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.encrypt-page .cipher-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 16px;
+    border-radius: 12px;
+    background: #FFFFFF;
+}
+
+.encrypt-page .cipher-detail span {
+    color: #777777;
+    font-size: 12px;
+}
+
+.encrypt-page .cipher-detail strong {
+    color: #1C1C1C;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.encrypt-page .cipher-detail-wide {
+    grid-column: 1 / -1;
+}
+
+/* PROCEDIMIENTO MATEMÁTICO */
+
+.encrypt-page .cipher-procedure-card {
+    background: #F5F5F5;
+}
+
+.encrypt-page .cipher-procedure-content {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.encrypt-page .cipher-procedure-content pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: #1C1C1C;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* DESENCRIPTACION RSA */
+
+.encrypt-page .decrypt-inputs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+@media (max-width: 1100px) {
+    .encrypt-page .decrypt-inputs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .encrypt-page .decrypt-inputs {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .encrypt-page .cipher-details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .encrypt-page .cipher-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .encrypt-page .cipher-output-row {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .encrypt-page .rsa-inputs {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 850px) {
+    body {
+        overflow: auto;
+    }
+
+    .app-layout {
+        flex-direction: column;
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex: none;
+        overflow: visible;
+    }
+
+    .main-content {
+        width: 100%;
+        height: auto;
+        flex: none;
+        overflow: visible;
+    }
+}

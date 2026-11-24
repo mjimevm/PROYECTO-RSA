@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<header class="page-header">
+    <h1>Vista General</h1>
+    <p>Bienvenido al sistema de criptografía RSA</p>
+</header>
+
+<section class="stats-grid">
+
+    <div class="stat-card blue">
+        <p>Encriptación</p>
+        <h2>RSA</h2>
+    </div>
+
+    <div class="stat-card purple">
+        <p>Llave pública</p>
+        <h2>(e, n)</h2>
+    </div>
+
+    <div class="stat-card green">
+        <p>Llave privada</p>
+        <h2>(d, n)</h2>
+    </div>
+
+</section>
+
+<section class="operations">
+    <h2>Operaciones</h2>
+
+    <div class="actions-grid">
+
+        <div class="action-card">
+            <h3>Encriptar mensaje</h3>
+            <p>Convertir texto a bloques cifrados</p>
+
+            <a href="{{ url_for('encrypt') }}"
+               class="action-button">
+                Abrir
+            </a>
+        </div>
+
+        <div class="action-card">
+            <h3>Desencriptar mensaje</h3>
+            <p>Recuperar el texto original</p>
+
+            <a href="{{ url_for('decrypt') }}"
+               class="action-button">
+                Abrir
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

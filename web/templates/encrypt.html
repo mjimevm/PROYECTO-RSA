@@ -1,0 +1,157 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="encrypt-page">
+
+    <!-- ENCABEZADO -->
+    <header class="encrypt-header">
+        <h1>Encriptar mensaje</h1>
+        <p>Convierte un mensaje de texto utilizando RSA.</p>
+    </header>
+
+    <!-- FORMULARIO -->
+    <form method="POST" action="{{ url_for('encrypt') }}">
+
+        <!-- PARÁMETROS RSA -->
+        <section class="encrypt-card parameters-card">
+
+            <h2>Parámetros RSA</h2>
+
+            <div class="rsa-inputs">
+
+                <div class="rsa-field">
+                    <label for="p">Número primo p</label>
+                    <input
+                        type="number"
+                        id="p"
+                        name="p"
+                        placeholder="367"
+                        value="{{ p | default('', true) }}"
+                    >
+                </div>
+
+                <div class="rsa-field">
+                    <label for="q">Número primo q</label>
+                    <input
+                        type="number"
+                        id="q"
+                        name="q"
+                        placeholder="373"
+                        value="{{ q | default('', true) }}"
+                    >
+                </div>
+
+                <div class="rsa-field">
+                    <label for="e">Exponente e</label>
+                    <input
+                        type="number"
+                        id="e"
+                        name="e"
+                        placeholder="17"
+                        value="{{ e | default('', true) }}"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MENSAJE ORIGINAL -->
+        <section class="encrypt-card message-card">
+
+            <h2>Mensaje original</h2>
+
+            <textarea
+                id="mensaje"
+                name="mensaje"
+                placeholder="Escribe tu mensaje..."
+                rows="4"
+            >{{ mensaje | default('', true) }}</textarea>
+
+            <button type="submit" class="encrypt-button">
+                Encriptar mensaje
+            </button>
+
+        </section>
+
+    </form>
+
+
+
+    <!-- RESULTADO DEL CIFRADO -->
+    <section class="encrypt-card result-card">
+        <h2>Resultado del cifrado</h2>
+
+        <div class="cipher-output-box">
+            {% if resultado is defined and resultado is not none %}
+            <div class="cipher-output-row">
+                <div class="cipher-output-content">
+                    <span class="cipher-output-label">
+                        MENSAJE CIFRADO
+                    </span>
+                    <div class="cipher-output-value">{{ resultado }}</div>
+                </div>
+
+                <button
+                    type="button"
+                    class="cipher-copy-button"
+                    data-cipher="{{ resultado }}"
+                    onclick="copiarCifrado(this)">
+                    Copiar
+                </button>
+            </div>
+            {% else %}
+            <span class="cipher-placeholder">
+                El resultado aparecerá aquí.
+            </span>
+            {% endif %}
+        </div>
+
+        {% if resultado is defined and resultado is not none %}
+        <div class="cipher-details-grid">
+            <div class="cipher-detail">
+                <span>Módulo (n)</span>
+                <strong>{{ n }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Totiente (φ)</span>
+                <strong>{{ phi }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Longitud (L)</span>
+                <strong>{{ L }}</strong>
+            </div>
+
+            <div class="cipher-detail">
+                <span>Relleno</span>
+                <strong>{{ "Sí" if relleno else "No" }}</strong>
+            </div>
+
+            <div class="cipher-detail cipher-detail-wide">
+                <span>Llave pública</span>
+                <strong>({{ llave_publica[0] }}, {{ llave_publica[1] }})</strong>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- PROCEDIMIENTO -->
+    {% if detalles %}
+    <section class="encrypt-card cipher-procedure-card">
+        <h2>Procedimiento de encriptación</h2>
+
+        <div class="cipher-procedure-content">
+            <pre>{{ detalles }}</pre>
+        </div>
+    </section>
+    {% endif %}
+
+
+
+</div>
+
+{% endblock %}

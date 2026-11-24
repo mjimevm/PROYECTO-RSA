@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RSA Cryptography</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<body>
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                RSA
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('dashboard') }}"
+                   class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                    <span class="nav-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('encrypt') }}"
+                    class="nav-item {% if request.endpoint == 'encrypt' %}active{% endif %}">
+                        <img src="{{ url_for('assets', filename='icons/lock.png') }}"
+                            alt=""
+                            class="nav-icon">
+                        <span>Encriptar</span>
+                    </a>
+
+                    <a href="{{ url_for('decrypt') }}"
+                    class="nav-item {% if request.endpoint == 'decrypt' %}active{% endif %}">
+                        <img src="{{ url_for('assets', filename='icons/unlock.png') }}"
+                            alt=""
+                            class="nav-icon">
+                        <span>Desencriptar</span>
+                    </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+</body>
+</html>
